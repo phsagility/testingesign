@@ -29,7 +29,7 @@
 		#filenameDialog{border:1px solid var(--line);border-radius:6px;padding:24px;width:min(420px,calc(100% - 32px));color:var(--ink)}#filenameDialog::backdrop,#confirmationDialog::backdrop{background:#17202a66}.filename-form{display:grid;gap:14px}.filename-form h2{margin:0;font-size:20px}.filename-form p{margin:0;color:var(--muted);line-height:1.5}.filename-form a{color:var(--accent);font-weight:700}.filename-form label{font-weight:700}.filename-form input{width:100%;padding:10px;border:1px solid var(--line);border-radius:4px;font:14px inherit}.filename-form input:invalid:not(:placeholder-shown){border-color:#c0392b}.filename-actions{display:flex;justify-content:flex-end;gap:8px}.confirmation-dialog{border:1px solid var(--line);border-radius:6px;padding:24px;width:min(460px,calc(100% - 32px));color:var(--ink)}.confirmation-dialog h2{margin:0 0 12px;font-size:20px}.confirmation-dialog p{margin:0 0 14px;color:var(--muted);line-height:1.5}.confirmation-dialog strong{color:var(--ink)}.confirmation-actions{display:flex;justify-content:flex-end;margin-top:20px}
 		.text-overlay{z-index:20;border:0;background:transparent;outline:0;box-shadow:none;cursor:grab;user-select:text;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.2}.text-overlay:empty::before{content:'Type here';color:#9aa4ad;opacity:.7;pointer-events:none}.text-overlay:active{cursor:grabbing}.text-overlay:focus{outline:0}
 		.symbol-overlay{z-index:20;border:0;background:transparent;color:#000;font-size:28px;font-weight:700;line-height:1;cursor:grab}
-		.signature img{width:calc(100% + 16px);height:calc(100% + 12px);margin-top:-6px}.signature::before{content:'Resize\A Signature';position:absolute;right:16px;bottom:2px;padding:1px 3px;background:#fff9;color:#164a7280;font:600 8px/1 Arial,sans-serif;white-space:pre;pointer-events:none}.signature::after{content:'';position:absolute;right:0;bottom:0;width:12px;height:12px;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);cursor:nwse-resize;pointer-events:none}
+		.signature img{width:calc(100% + 16px);height:calc(100% + 12px);margin-top:-6px}.signature::before{content:'Resize\A Signature';position:absolute;right:16px;bottom:2px;padding:1px 3px;background:#fff9;color:#164a7280;font-family:Arial,sans-serif;font-size:8px;font-style:italic;font-weight:600;line-height:1;white-space:pre;pointer-events:none}.signature::after{content:'';position:absolute;right:0;bottom:0;width:12px;height:12px;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);cursor:nwse-resize;pointer-events:none}
 		@media(max-width:720px){
 			header{height:auto;min-height:70px;padding:8px 10px;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px;align-items:center}
 			.brand{font-size:21px;line-height:1.05;min-width:0}
@@ -41,6 +41,7 @@
 			.stage{padding:10px 8px}
 			.pages{gap:16px}
 			.signature{min-width:70px;min-height:28px}
+			.signature::before{font-size:5px}
 		}
 	</style>
 </head>

@@ -45,11 +45,26 @@ function doPost(e) {
       attachments: [attachment]
     });
 
-    return jsonResponse({ success: true });
+    return htmlResponse('Email sent successfully.');
   } catch (error) {
     console.error(error.stack || error.message || error);
-    return jsonResponse({ success: false, error: error.message || String(error) });
+    return htmlResponse('Email could not be sent: ' + (error.message || String(error)));
   }
+}
+
+function htmlResponse(message) {
+  return HtmlService
+    .createHtmlOutput('<!doctype html><title>Sagility email service</title><p>' + escapeHtml(message) + '</p>')
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 function jsonResponse(payload) {

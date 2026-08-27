@@ -122,7 +122,7 @@
 				form.method='POST';form.action=emailEndpoint;form.target=frame.name;form.style.display='none';
 				Object.entries(JSON.parse(payload)).forEach(([key,value])=>{const input=document.createElement('input');input.type='hidden';input.name=key;input.value=value;form.appendChild(input);});
 				document.body.appendChild(form);form.submit();
-				await new Promise(resolve=>setTimeout(resolve,1500));
+				await new Promise(resolve=>setTimeout(resolve,3000));
 				form.remove();frame.remove();
 			}
 			filenameForm.onsubmit=async event=>{

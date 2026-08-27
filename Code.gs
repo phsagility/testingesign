@@ -8,7 +8,13 @@ function doPost(e) {
       throw new Error('No request body received.');
     }
 
-    var data = JSON.parse(e.postData.contents);
+    var data;
+    var contentType = String(e.postData.type || '').toLowerCase();
+    if (contentType.indexOf('application/json') === 0 || contentType.indexOf('text/plain') === 0) {
+      data = JSON.parse(e.postData.contents);
+    } else {
+      data = e.parameter || {};
+    }
     var email = String(data.email || '').trim();
     var name = String(data.name || '').trim();
     var pdfBase64 = String(data.pdfBase64 || '').trim();

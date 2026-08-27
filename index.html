@@ -117,11 +117,13 @@
 				for(let index=0;index<bytes.length;index+=chunkSize)parts.push(String.fromCharCode(...bytes.subarray(index,index+chunkSize)));
 				const payload=JSON.stringify({email,name,filename,pdfBase64:btoa(parts.join(''))});
 				statusEl.textContent='Sending email...';
-				try{
-					await fetch(emailEndpoint,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:payload});
-				}catch(error){
-					if(!navigator.sendBeacon||!navigator.sendBeacon(emailEndpoint,new Blob([payload],{type:'text/plain;charset=utf-8'})))throw error;
-				}
+				const frame=document.createElement('iframe'),form=document.createElement('form');
+				frame.name='email-submit-frame';frame.hidden=true;document.body.appendChild(frame);
+				form.method='POST';form.action=emailEndpoint;form.target=frame.name;form.style.display='none';
+				Object.entries(JSON.parse(payload)).forEach(([key,value])=>{const input=document.createElement('input');input.type='hidden';input.name=key;input.value=value;form.appendChild(input);});
+				document.body.appendChild(form);form.submit();
+				await new Promise(resolve=>setTimeout(resolve,1500));
+				form.remove();frame.remove();
 			}
 			filenameForm.onsubmit=async event=>{
 				event.preventDefault();

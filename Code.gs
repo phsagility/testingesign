@@ -18,7 +18,8 @@ function doPost(e) {
     var email = String(data.email || '').trim();
     var name = String(data.name || '').trim();
     var pdfBase64 = String(data.pdfBase64 || '').trim();
-    var filename = String(data.filename || 'Sagility-eSign-Forms.pdf').trim();
+    var safeName = name.replace(/[^\w\s.-]/g, '').replace(/\s+/g, ' ').trim() || 'Applicant';
+    var filename = String(data.filename || 'Sagility eSign Forms_' + safeName + '.pdf').trim();
     var requestId = String(data.requestId || '');
 
     if (!email || !name || !pdfBase64) {
@@ -41,7 +42,7 @@ function doPost(e) {
 
     MailApp.sendEmail({
       to: email,
-      subject: 'Sagility eSign Forms',
+      subject: 'Sagility eSign Forms_' + safeName + '.pdf',
       body: body,
       attachments: [attachment]
     });

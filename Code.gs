@@ -42,7 +42,7 @@ function doPost(e) {
 
     MailApp.sendEmail({
       to: email,
-      subject: 'Sagility eSign Forms_' + safeName + '.pdf',
+      subject: 'Sagility eSign Forms_' + safeName + '_Sagility-WFH-Forms',
       body: body,
       attachments: [attachment]
     });
